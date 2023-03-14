@@ -15,12 +15,12 @@ def parse():
     '''Returns args passed to the train.py script.'''
     parser = argparse.ArgumentParser()
     #parser = Parser()
-    parser.add_argument('--root_dir', type=Path, default=Path("../datasets/SPGC_challenge_track_2_release/"))
-    parser.add_argument('--fold', type=int, default=None)
     parser.add_argument('--track', type=int, default=2)
-    parser.add_argument('--split_path', type=Path, default=Path(f"data/track2"))
+    parser.add_argument('--root_dir', type=Path, help='dataset folder path', default=Path("../datasets/SPGC_challenge_track_2_release/"))
+    parser.add_argument('--fold', type=int, help='test fold for cross-validation', default=None)
+    parser.add_argument('--split_path', type=Path, help='json dataset metadata', default=Path(f"data/track2"))
     parser.add_argument('--data_dir', type=Path, default=Path(f"data/track2"))
-    parser.add_argument('--cache_rate', type=float, default=1.0)
+    parser.add_argument('--cache_rate', type=float, help='fraction of dataset to be cached in RAM', default=1.0)
     parser.add_argument('--project', type=str, default="your-wandb-project")
 
     parser.add_argument('--use_sleeping', type=bool, default=False)
@@ -36,7 +36,7 @@ def parse():
     parser.add_argument('--verbose', type=bool, default=False)
     parser.add_argument('--subject', type=int, default=None)
 
-    parser.add_argument('--model', type=str, default='cnn1d_autoencoder')
+    parser.add_argument('--model', type=str, help='model', default='cnn1d_autoencoder')
 
     parser.add_argument('--in_channels', type=int, default=10)
     parser.add_argument('--input_features', type=int, default=10)
@@ -56,22 +56,22 @@ def parse():
     parser.add_argument('--h_size', type=int, default=64)
     parser.add_argument('--enable_variational', type=int, default=0)
    
-    parser.add_argument('--optimizer', type=str, choices=['SGD', 'Adam', 'AdamW', 'RMSprop', 'LBFGS'], default='Adam')
-    parser.add_argument('--learning_rate', type=float, default=5e-4)
-    parser.add_argument('--weight_decay', type=float, default=5e-4)
-    parser.add_argument('--enable_scheduler', type=int, choices=[0,1], default=1)
-    parser.add_argument('--scheduler_factor', type=float, default=5e-1)
-    parser.add_argument('--scheduler_patience', type=int, default=10)
-    parser.add_argument('--scheduler_threshold', type=float, default=1e-2)
+    parser.add_argument('--optimizer', type=str, help='optimizer (SGD, Adam, AdamW, RMSprop, LBFGS)', choices=['SGD', 'Adam', 'AdamW', 'RMSprop', 'LBFGS'], default='Adam')
+    parser.add_argument('--learning_rate', type=float, help='learning rate', default=5e-4)
+    parser.add_argument('--weight_decay', type=float, help='L2 regularization weight', default=5e-4)
+    parser.add_argument('--enable_scheduler', type=int, help='enable learning rate scheduler', choices=[0,1], default=1)
+    parser.add_argument('--scheduler_factor', type=float, help='if using scheduler, factor of increment/redution', default=5e-1)
+    parser.add_argument('--scheduler_threshold', type=float, help='if using scheduler, threshold for learning rate update', default=1e-2)
+    parser.add_argument('--scheduler_patience', type=int, help='if using scheduler, number of epochs before updating the learning rate', default=10)
 
-    parser.add_argument('--batch_size', type=int, default=64)
-    parser.add_argument('--epochs', type=int, default=100)
-    parser.add_argument('--experiment', type=str, default=None)
-    parser.add_argument('--ckpt_every', type=int, default=-1)
-    parser.add_argument('--resume', default=None)
+    parser.add_argument('--batch_size', type=int, help='batch size', default=64)
+    parser.add_argument('--epochs', type=int, help='number of training epochs', default=100)
+    parser.add_argument('--experiment', type=str, help='experiment name (in None, default is timestamp_modelname)', default=None)
+    parser.add_argument('--ckpt_every', type=int, help='checkpoint saving frequenct (in epochs); -1 saves only best-validation and best-test checkpoints', default=-1)
+    parser.add_argument('--resume', help='if not None, checkpoint path to resume', default=None)
     # experiments should be saved in "experiments/*")
 
-    parser.add_argument('--device', type=str, default='cuda')
+    parser.add_argument('--device', type=str, help='device to use (cpu, cuda, cuda[number])', default='cuda')
 
     args = parser.parse_args()
 
