@@ -251,5 +251,5 @@ S Thakur, S Wu, C Smyth, P Poupart, and M Brubaker,
 arXiv preprint arXiv:1907.05321, 2019.
 
 
-# Acknowledgements
-This code is taken from https://github.com/IngRaffaeleMineo/3D-BCPTcode and modified to our purposes.
+<!--- # Acknowledgements
+This code is taken from https://github.com/IngRaffaeleMineo/3D-BCPTcode and modified to our purposes. -->
