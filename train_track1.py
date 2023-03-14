@@ -16,7 +16,7 @@ def parse():
     #parser = Parser()
     parser.add_argument('--track', type=int, default=1)
     parser.add_argument('--root_dir', type=Path, help='dataset folder path', default=Path("../datasets/SPGC_challenge_track_1_release/"))
-    parser.add_argument('--fold', type=int, help='test fold for nested cross-validation', default=None)
+    parser.add_argument('--fold', type=int, help='test fold for cross-validation', default=None)
     parser.add_argument('--split_path', type=Path, help='json dataset metadata', default=Path(f"data/track1/"))
     parser.add_argument('--data_dir', type=Path, default=Path(f"data/track1/"))
     parser.add_argument('--cache_rate', type=float, help='fraction of dataset to be cached in RAM', default=1.0)
