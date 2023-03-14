@@ -1,0 +1,10 @@
+*__pycache__*
+*/.ipynb_checkpoints/*
+*.pt
+*.pth
+wandb/*
+hidden/*
+test_track1.csv
+test_track2.csv
+ensemble.txt
+best_models.txt
